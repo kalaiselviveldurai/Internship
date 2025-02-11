@@ -1,0 +1,201 @@
+# class and objects in python
+# create  a class
+class animal:
+    def __init__(self, name, age):
+        name = self.name = name
+        age = self.age = age
+
+    def __str__(self):
+        return f'animal name is {self.name} and age is {self.age}'
+
+
+a1 = animal('cat', 20)
+print(a1)
+# ----------------------------------------------------------------------------------------------------------------------
+# 1.Write a Python program to import a built-in array module and display the namespace of the said module.
+import array
+
+for i in array.__dict__:
+    print(i)
+# ----------------------------------------------------------------------------------------------------------------------
+# 2.Write a Python program to create a class and display the namespace of that class.
+for i in animal.__dict__:
+    print(i)
+# ----------------------------------------------------------------------------------------------------------------------
+# 3.Write a Python program to create an instance of a specified class and display the namespace of the said instance.
+print(a1.__dict__)
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# 4.Write a Python class named Student with two attributes student_name, marks.
+# Modify the attribute values of the said class and print the original and modified values of the said attributes.
+class student:
+    name = 'kalai'
+    marks = 98
+
+
+print(f'student name:{getattr(student, 'name')}')
+print(f'student marks:{getattr(student, 'marks')}')
+setattr(student, 'name', 'kalaiselvi')
+setattr(student, 'marks', 97)
+print(f'student name:{getattr(student, 'name')}')
+print(f'student marks:{getattr(student, 'marks')}')
+# ----------------------------------------------------------------------------------------------------------------------
+# 5. Write a Python class named Student with two attributes: student_id, student_name. Add a new attribute: student_class.
+# Create a function to display all attributes and their values in the Student class.
+for attr, value in student.__dict__.items():
+    if not attr.startswith('__'):
+        print(f'{attr} : {value}')
+student.student_class = 'V'
+for attr, value in student.__dict__.items():
+    if not attr.startswith('__'):
+        print(f'{attr} : {value}')
+del student.marks
+for attr, value in student.__dict__.items():
+    if not attr.startswith('__'):
+        print(f'{attr} : {value}')
+# ----------------------------------------------------------------------------------------------------------------------
+# 6.Write a Python class named Student with two instances student1, student2 and assign values to the instances' attributes.
+# Print all the attributes of the student1, student2 instances with their values in the given format.
+
+student1 = student()
+student2 = student()
+student1.student_name = 'dhanu'
+student2.student_name = 'kalai'
+student1.student_age = 20
+student2.student_age = 21
+students = [student1, student2]
+for student in students:
+    for attr in student.__dict__.keys():
+        print(f'{attr} : {getattr(student, attr)}')
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# 7.Write a Python class to check the validity of a string of parentheses, '(', ')', '{', '}', '[' and '].
+# These brackets must be closed in the correct order, for example "()" and "()[]{}" are valid but "[)", "({[)]" and "{{{" are invalid.
+
+class py_solution:
+    def is_valid_parenthese(self, str1):
+        stack, pchar = [], {"(": ")", "{": "}", "[": "]"}
+        for parenthese in str1:
+            if parenthese in pchar:
+                stack.append(parenthese)
+            elif len(stack) == 0 or pchar[stack.pop()] != parenthese:
+                return False
+        return len(stack) == 0
+
+
+print(py_solution().is_valid_parenthese("(){}[]"))
+print(py_solution().is_valid_parenthese("()[{)}"))
+print(py_solution().is_valid_parenthese("()"))
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+#8.write a program to implement multiple and multilevel inheritance
+class grandfather:
+    def name(self):
+        return f'grandfather name is gandhi'
+class father(grandfather):
+    def __init__(self):
+        print('father class created')
+    def father_name(self):
+        return f'father name is veldurai'
+class mother():
+    def __init__(self):
+        print(f"mother name is ramalakshumi")
+class child(father,mother):
+    def __init__(self):
+        mother.__init__(self)
+        father.__init__(self)
+c1=child()
+c2=child()
+# ----------------------------------------------------------------------------------------------------------------------
+class grandchild(father):
+    def gchild_name(self):
+        return f'gchild name is kalai'
+
+gchild1=grandchild()
+print(gchild1.father_name())
+print(gchild1.name())
+# ------------------------------------------------------------------------------------------------------------------------------------------
+# 9.write a program to implemet polymorphism in builtin functions
+def add(a, b):
+    return a + b
+
+print(add(3, 4))           # Integer addition
+print(add("Hello, ", "World!"))  # String concatenation
+print(add([1, 2], [3, 4])) # List concatenation
+# ----------------------------------------------------------------------------------------------------------------------
+# 10.Write a program to implement multilevel inheritance
+class animal:
+    def category(self):
+        return 'animal'
+class dog(animal):
+    def animal_name(self):
+        return 'dog'
+animal1=dog()
+print(animal1.category())
+# ----------------------------------------------------------------------------------------------------------------------
+# 11.Write a program to create a simple calculator using class
+class calculator:
+    def __init__(self,a,b):
+        self.a=a
+        self.b=b
+    def add(self):
+        return self.a+self.b
+    def sub(self):
+        return self.a-self.b
+    def mul(self):
+        return self.a*self.b
+    def div(self):
+        return self.a/self.b
+
+cal=calculator(20,10)
+print(cal.add())
+print(cal.sub())
+print(cal.mul())
+print(cal.div())
+# ----------------------------------------------------------------------------------------------------------------------
+# 12.write a program to implement polymorphism  using method overriding
+class student:
+    def id(self):
+        print("student id is 1")
+class student1(student):
+    def id(self):
+        print("student id is wrong please change it")
+student2=student1()
+print(student2.id())
+# ----------------------------------------------------------------------------------------------------------------------
+#13.write a program to implement polymorphism  using method overriding
+class calc:
+    def add(self,a,b=0,c=0):
+        return a+b+c
+calc1=calc()
+print(calc1.add(8,9))
+print(calc1.add(8,9,20))
+# ----------------------------------------------------------------------------------------------------------------------
+# 14.write a program to implement multiple inheritance
+class vehicle:
+    def type(self):
+        return "type is vehicle"
+class owner:
+    def owner_name(self):
+        return "owner name is kalai"
+class car(vehicle,owner):
+    def car_name(self):
+        return "car name is maruti"
+car1=car()
+print(car1.owner_name())
+print(car1.car_name())
+print(car1.type())
+# ----------------------------------------------------------------------------------------------------------------------
+# 15.write a program using init method
+class College:
+    def __init__(self,name):
+        self.name=name
+    def clgname(self):
+        return "college name is {self.name}"
+col=College("psg").clgname()
+print(col)
+
+# print(college("psg").name())
