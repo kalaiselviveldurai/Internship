@@ -1,0 +1,151 @@
+# 1.write a program to get current working directory
+import os
+cwd = os.getcwd()
+print("Current working directory:", cwd)
+# ---------------------------------------------------------------------------------------------------------------------
+#2.write a program to change the current working directory
+os.chdir('../')
+print("Current working directory:", os.getcwd())
+os.chdir('../')
+# ---------------------------------------------------------------------------------------------------------------------
+# os.rmdir('K:/Internship/kalaiselvi')
+# 3.write a program to create new directory
+directory='kalaiselvi'
+parent_directory='K:/Internship'
+path=os.path.join(parent_directory,directory)
+os.mkdir(path)
+print(f'python directory is created {path}')
+os.rmdir('K:/Internship/kalaiselvi')
+# os.rmdir('K:Internship/new')
+director='new'
+parent_director='K:/Internship'
+path1=os.path.join(parent_director,director)
+mode=0o666
+os.mkdir(path1,mode)
+print(f'python directory is created {path}')
+os.rmdir('K:/kalaiselvi/kalaiselvii')
+directory='kalaiselvii'
+parent_directory='K:/kalaiselvi'
+path=os.path.join(parent_directory,directory)
+mode=0o666
+os.makedirs(path,mode)
+print(f'python directory is created {path}')
+os.rmdir('K:/kalaiselvi/kalaiselvii')
+# ----------------------------------------------------------------------------------------------------------------------
+# # 4.write a code to return the list of files and directories
+print(os.listdir())
+# ----------------------------------------------------------------------------------------------------------------------
+# 5.write a program to remove files and directories
+os.rmdir('K:/Internship/new')
+print(os.name)
+
+import os
+fd = "GFG.txt"
+
+file = open(fd, 'w')
+file.write("Hello")
+file.close()
+file = open(fd, 'r')
+text = file.read()
+print(text)
+# ----------------------------------------------------------------------------------------------------------------------
+# 6.Write a Python program to list only directories, files and all directories, files in a specified path.
+path='K:/Internship'
+dire=[name for name in os.listdir(path) if os.path.isdir(os.path.join(path,name))]
+print(dire)
+dire1=[name for name in os.listdir(path) if os.path.isfile(os.path.join(path,name))]
+print(dire1)
+# ----------------------------------------------------------------------------------------------------------------------
+# 7.Write a Python program to scan a specified directory and identify the subdirectories and files.
+for entry in os.scandir(path):
+    if entry.is_dir():
+        print(f'{entry.name} is a directory')
+    elif entry.is_file():
+        print(f'{entry.name} is a file')
+    elif entry.is_symlink():
+        print(f'{entry.name} is a symbolic link')
+    else:
+        print(f'{entry.name} is unknown')
+# ----------------------------------------------------------------------------------------------------------------------
+# 8.Write a Python program to check access to a specified path.
+# Test the existence, readability, writability and executability of the specified path.
+test='K:/python_questions/Programming questions for dictionary.docx'
+print("Exists:",os.path.exists(test))
+print("Reads:",os.access(test,os.R_OK))
+print('Writes:',os.access(test,os.W_OK))
+print('Executes:',os.access(test,os.X_OK))
+# ----------------------------------------------------------------------------------------------------------------------
+# 9.Write a Python program to get the size, permissions, owner, device, created, 
+# last modified and last accessed date and time of a specified path.
+print('Size:',os.path.getsize(test))
+print('Permissions:',oct(os.stat(test).st_mode))
+print('Owner:',os.stat(test).st_uid)
+print('device:',os.stat(test).st_dev)
+print('created:',os.stat(test).st_ctime)
+print('last modified:',os.stat(test).st_mtime)
+print('last accessed:',os.stat(test).st_atime)
+# # --------------------------------------------------------------------------------------------------------------------
+# 10.Write a Python program to retrieve the current working directory and change the dir (move up one).
+print(os.getcwd())
+os.chdir(os.pardir)
+print(os.getcwd())
+os.chdir('C:/Users/kalai/PycharmProjects/PythonProject')
+print(os.getcwd())
+# ----------------------------------------------------------------------------------------------------------------------
+from datetime import date, timedelta
+
+t=date(2003,4,20)
+print(t)
+print(date.today())
+date_tiem=date.fromtimestamp(1738930405.477798)
+print(date_tiem)
+# ----------------------------------------------------------------------------------------------------------------------
+# 11.Write a Python script to display the various Date Time formats - a) Current date and time
+from datetime import datetime, date
+# a) Current date and time
+date_now = date.today()
+time_now = datetime.now()
+print('date:', date_now)
+print('date and time:', time_now)
+# b) Current year
+print('current year:', datetime.now().year)
+print("Current year: ", date_now.strftime("%Y"))
+# c) Month of year
+print('month:', datetime.now().month)
+# d)Week number of the year
+print('week number:', datetime.now().strftime("%U"))
+# e)Weekday of the week
+print('weekday of the week:',datetime.now().weekday())
+# f) Day of year
+print('day of year:', datetime.now().strftime("%j"))
+# g) Day of the month
+print('day of the month:', datetime.now().strftime("%d"))
+# h) Day of week
+print('day of the week:',datetime.now().strftime("%A"))
+# ----------------------------------------------------------------------------------------------------------------------
+# 12. Write a Python program to convert a string to datetime.
+sample='Jul 1 2014 2:43PM'
+print(datetime.strptime(sample,'%b %d %Y %I:%M%p'))
+# ----------------------------------------------------------------------------------------------------------------------
+# 13.Write a Python program to subtract five days from the current date.
+diff_days=date.today()-timedelta(5)
+print(diff_days)
+# ----------------------------------------------------------------------------------------------------------------------
+# 14.Write a Python program to get days between two dates.
+a = date(2000, 2, 28)
+b = date(2001, 2, 28)
+print(b-a)
+# ----------------------------------------------------------------------------------------------------------------------
+# 15.Write a code to convert one timezone to another
+from datetime import datetime
+from zoneinfo import ZoneInfo
+current_timezone = ZoneInfo("UST")
+target_timezone = ZoneInfo("Asia/Kolkata")
+
+current_time = datetime.now(current_timezone)
+converted_time = current_time.astimezone(target_timezone)
+
+print("Current Time:", current_time.strftime('%Y-%m-%d %H:%M:%S %Z %z'))
+print("Converted Time:", converted_time.strftime('%Y-%m-%d %H:%M:%S %Z %z'))
+
+
